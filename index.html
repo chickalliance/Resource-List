@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chickasha Community Resources</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    h1 { text-align: center; margin-top: 10px; }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 200px;
+    }
+    input[type="text"] {
+      width: 100%; max-width: 400px;
+      padding: 10px; font-size: 16px;
+      margin: 20px auto; display: block;
+    }
+    .agency-card {
+      background: white; padding: 15px;
+      margin-bottom: 15px; border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<img src="CCALogo.png" alt="Chickasha Community Alliance Logo" class="logo" />
+<h1>Chickasha Community Resource List</h1>
+
+<input type="text" id="searchInput" placeholder="Search agencies or services..." onkeyup="filterAgencies()"/>
+
+<div id="agencyList">
+
+    <div class="agency-card">
+      <strong>Life Choices</strong><br>
+      📞 405-222-5483<br>
+      📝 Pregnancy tests, ultrasounds, parenting / life skills classes, baby items<br>
+      ⏰ M,T,Th 9a-5p<br>
+      🏷️ Medical / Health, Education / Testing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Freeway Ministries</strong><br>
+      📞 405-331-9268<br>
+      📝 Faith Based Recovery Group Ministry (Housed at Bible Baptist Church)<br>
+      ⏰ Saturdays 5:30 Dinner, 6pm Service<br>
+      🏷️ Church Services, Faith-Based Support<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Resurrection House/LSI</strong><br>
+      📞 866-277-4788<br>
+      📝 Shelter, Food Pantry, Life Skills Program, RU Addictions Meetings<br>
+      ⏰ M-F 9am-5pm / Shelter: 5pm-8am<br>
+      🏷️ Housing, Clothing, Faith-Based Support<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>The Salvation Army</strong><br>
+      📞 405-224-5647, <a href="https://southernusa.salvationarmy.org/chickasha" target="_blank">https://southernusa.salvationarmy.org/chickasha</a><br>
+      📝 Food Pantry, Utility Assistance, Hygiene Kits, Back to School & Christmas Help<br>
+      ⏰ Mon-Thursday 9am-3:30pm<br>
+      🏷️ Food Assistance, Utility Assistance, Church Services, Hygiene / Showers, Faith-Based Support<br>
+      ⚠️ OUT OF UTILITY FUNDING
+    </div>
+    
+    <div class="agency-card">
+      <strong>Catholic Charities Lawton</strong><br>
+      📞 580-353-1811<br>
+      📝 580-353-1811<br>
+      ⏰ Call to Schedule Appointment<br>
+      🏷️ Food Assistance, Utility Assistance, Faith-Based Support<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Southern Oaks Church of Christ</strong><br>
+      📞 405-224-1821<br>
+      📝 Food & Clothing Assistance <br>
+      ⏰ Clothing M,Th 9am-12 / Food Th 5:30-7<br>
+      🏷️ Food Assistance, Clothing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Intervention & Crisis Advocacy Network</strong><br>
+      📞 405-222-1818<br>
+      📝 For victims of Domestic Violence: Counseling, Meals/Clothing, Legal Aid<br>
+      ⏰ nan<br>
+      🏷️ Food Assistance, Counseling / Mental Health, Medical / Health, Education / Testing, Legal<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Epworth United Methodist</strong><br>
+      📞 405-224-3320<br>
+      📝 Food (Wed 2-330 once per month), Utility Assistance (Chickasha Only)<br>
+      ⏰ nan<br>
+      🏷️ Food Assistance, Utility Assistance<br>
+      ⚠️ OUT OF UTILITY FUNDING
+    </div>
+    
+    <div class="agency-card">
+      <strong>DHS (Grady)</strong><br>
+      📞 405-574-7400<br>
+      📝 SNAP, SoonerCare, TANF, LIHEAP, <br>
+      ⏰ Mon-Fri 8am-5pm<br>
+      🏷️ Medical / Health, Education / Testing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>DAV Center</strong><br>
+      📞 405-448-5110<br>
+      📝 Help for Veterans<br>
+      ⏰ Wed/Fri 9-12,1-3<br>
+      🏷️ Counseling / Mental Health, Education / Testing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Washita Valley </strong><br>
+      📞 405-224-5831<br>
+      📝 Transit System<br>
+      ⏰ nan<br>
+      🏷️ nan<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Marie Detty Outreach</strong><br>
+      📞 580-250-1794<br>
+      📝 Housing, Utility<br>
+      ⏰ nan<br>
+      🏷️ Housing, Utility Assistance<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>SWYFS</strong><br>
+      📞 405-222-5437<br>
+      📝 Counseling, Court Order issues<br>
+      ⏰ M-Th <br>
+      🏷️ Counseling / Mental Health, Legal<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Chickasha Soup Kitchen</strong><br>
+      📞 405-999-5761<br>
+      📝 Daily Lunch Feeding-528  W. Minnesota Ave<br>
+      ⏰ M-F 11:30am-1pm<br>
+      🏷️ Public Meals<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Heidi Helping The Homeless</strong><br>
+      📞 405-448-5016<br>
+      📝 Food, Clothing, Store, Tents, Bedding, Laundry, Showers, Computers,<br>
+      ⏰ Mon-Sat 10am-6pm<br>
+      🏷️ Housing, Food Assistance, Clothing, Public Meals, Hygiene / Showers<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Oklahoma Alliance for Recovery Resources</strong><br>
+      📞 <a href="https://www.okarr.org" target="_blank">https://www.okarr.org</a><br>
+      📝 Housing Assistance for those in recovery from opioid use<br>
+      ⏰ Online Resource<br>
+      🏷️ Housing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>ASCOG </strong><br>
+      📞 580-736-7029<br>
+      📝 55+  Medical, nutrition, utility, etc.<br>
+      ⏰ nan<br>
+      🏷️ Food Assistance, Utility Assistance, Medical / Health<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Chickasha Adult Learning Center</strong><br>
+      📞 405-222-6562<br>
+      📝 Adult Basic Education, Scholarships, Pre-Testing, ESL, GED Testing<br>
+      ⏰ nan<br>
+      🏷️ Education / Testing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Michigan Avenue Baptist Church</strong><br>
+      📞 405-224-5379<br>
+      📝 Clothing, Food, Showers, Back to School, Document Assistance, Financial Help<br>
+      ⏰ Tuesday 9am-Noon or by appt.<br>
+      🏷️ Food Assistance, Clothing, Public Meals, Church Services, Hygiene / Showers, Faith-Based Support<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Breakout Ministries Food Pantry</strong><br>
+      📞 405-819-3921<br>
+      📝 Food Assistance (1300 S. 29th St)<br>
+      ⏰ 2nd & 4th Thursdays 4pm-6pm<br>
+      🏷️ Food Assistance, Faith-Based Support<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>YMCA of Greater Oklahoma</strong><br>
+      📞 405-297-7735<br>
+      📝 Health & Wellness, School Age Childcare (Scholarships Available)<br>
+      ⏰ nan<br>
+      🏷️ Counseling / Mental Health, Medical / Health<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>First Baptist Church</strong><br>
+      📞 405-224-5196<br>
+      📝 Food, Utilities (by appointment)<br>
+      ⏰ Food Last Saturday of month at 8am<br>
+      🏷️ Food Assistance, Utility Assistance<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Grady Co. Health Department </strong><br>
+      📞 405-224-2022<br>
+      📝 COVID vaccines, flu vaccines, Tdap and express STI’s,WIC, Soonercare<br>
+      ⏰ nan<br>
+      🏷️ Counseling / Mental Health, Medical / Health, Education / Testing<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Parkview Christian Church</strong><br>
+      📞 405-224-3027<br>
+      📝 Utilities<br>
+      ⏰ Mon-Thurs 9am-4pm<br>
+      🏷️ Utility Assistance<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>findhelp.org</strong><br>
+      📞 <a href="https://www.findhelp.org" target="_blank">https://www.findhelp.org</a><br>
+      📝 Online Resource<br>
+      ⏰ nan<br>
+      🏷️ nan<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Narcotics Anonymous </strong><br>
+      📞 nan<br>
+      📝 Recovery Meetings<br>
+      ⏰ Thursday's @ 7p - Michigan Avenue Baptist Church<br>
+      🏷️ Counseling / Mental Health, Faith-Based Support, Recovery<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>Alcoholics Anonymous</strong><br>
+      📞 nan<br>
+      📝 Recovery Meetins<br>
+      ⏰ Mon-Thurs @ 6p - The Salvation Army<br>
+      🏷️ Counseling / Mental Health, Education / Testing, Faith-Based Support, Recovery<br>
+      
+    </div>
+    
+    <div class="agency-card">
+      <strong>National Alliance on Mental Illness (NAMI)</strong><br>
+      📞 405-544-8235 (Emily Burns) or 434-848-5178 (Emma Short)<br>
+      📝 Family Support Group @ Michigan Avenue Baptist Church - 4th Thursday of each month<br>
+      ⏰ 6p-730p<br>
+      🏷️ Counseling / Mental Health, Faith-Based Support<br>
+      
+    </div>
+    
+</div>
+
+<script>
+  function filterAgencies() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.agency-card');
+    cards.forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(input) ? 'block' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
