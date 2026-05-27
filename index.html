@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,299 +5,375 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chickasha Community Resources</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f1f1f1; }
-    h1 { text-align: center; margin-top: 10px; }
+    :root {
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #356854;
+      --accent-dark: #284e3f;
+      --chip: #e8f0ec;
+      --warning-bg: #fff7ed;
+      --warning-text: #9a3412;
+      --border: #d1d5db;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .logo {
       display: block;
-      margin: 0 auto 20px;
-      max-width: 200px;
+      margin: 0 auto 16px;
+      max-width: 220px;
+      width: 100%;
+      height: auto;
     }
-    input[type="text"] {
-      width: 100%; max-width: 400px;
-      padding: 10px; font-size: 16px;
-      margin: 20px auto; display: block;
+
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+      font-size: 2rem;
     }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(244,244,244,0.96);
+      backdrop-filter: blur(6px);
+      padding: 8px 0 14px;
+      margin-bottom: 8px;
+    }
+
+    .search {
+      width: 100%;
+      max-width: 460px;
+      padding: 12px 14px;
+      font-size: 16px;
+      margin: 0 auto 14px;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: white;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .status-row {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .agency-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
     .agency-card {
-      background: white; padding: 15px;
-      margin-bottom: 15px; border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: var(--card);
+      padding: 16px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #ececec;
     }
-    a { color: #0645AD; text-decoration: none; }
+
+    .agency-name {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+    }
+
+    .line {
+      margin: 6px 0;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: var(--chip);
+      color: var(--accent-dark);
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+    }
+
+    .warning {
+      margin-top: 12px;
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      background: white;
+      border-radius: 14px;
+      padding: 30px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: none;
+    }
+
+    a {
+      color: #0645AD;
+      text-decoration: none;
+    }
+
     a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      body { padding: 14px; }
+      h1 { font-size: 1.6rem; }
+      .filter-btn { font-size: 13px; padding: 8px 10px; }
+      .agency-list { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <img src="CCALogo.png" alt="Chickasha Community Alliance Logo" class="logo" />
+    <h1>Chickasha Community Resource List</h1>
+    <div class="subtitle">Live directory powered by your Google Sheet</div>
 
-<img src="CCALogo.png" alt="Chickasha Community Alliance Logo" class="logo" />
-<h1>Chickasha Community Resource List</h1>
+    <div class="controls">
+      <input
+        type="text"
+        id="searchInput"
+        class="search"
+        placeholder="Search agencies, services, categories, or contact info..."
+      />
+      <div id="filterBar" class="filter-bar"></div>
+      <div id="statusRow" class="status-row">Loading resources...</div>
+    </div>
 
-<input type="text" id="searchInput" placeholder="Search agencies or services..." onkeyup="filterAgencies()"/>
+    <div id="agencyList" class="agency-list"></div>
+    <div id="emptyState" class="empty">No agencies match that search/filter right now.</div>
+  </div>
 
-<div id="agencyList">
+  <script>
+    const API_URL = "https://sheetdb.io/api/v1/3zns291hnncjc";
 
-    <div class="agency-card">
-      <strong>Life Choices</strong><br>
-      📞 405-222-5483<br>
-      📝 Pregnancy tests, ultrasounds, parenting / life skills classes, baby items<br>
-      ⏰ M,T,Th 9a-5p<br>
-      🏷️ Medical / Health, Education / Testing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Freeway Ministries</strong><br>
-      📞 405-331-9268<br>
-      📝 Faith Based Recovery Group Ministry (Housed at Bible Baptist Church)<br>
-      ⏰ Saturdays 5:30 Dinner, 6pm Service<br>
-      🏷️ Church Services, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Resurrection House/LSI</strong><br>
-      📞 866-277-4788<br>
-      📝 Shelter, Food Pantry, Life Skills Program, RU Addictions Meetings<br>
-      ⏰ M-F 9am-5pm / Shelter: 5pm-8am<br>
-      🏷️ Housing, Clothing, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>The Salvation Army</strong><br>
-      📞 405-224-5647, <a href="https://southernusa.salvationarmy.org/chickasha" target="_blank">https://southernusa.salvationarmy.org/chickasha</a><br>
-      📝 Food Pantry, Utility Assistance, Hygiene Kits, Back to School & Christmas Help<br>
-      ⏰ Mon-Thursday 9am-3:30pm<br>
-      🏷️ Food Assistance, Utility Assistance, Church Services, Hygiene / Showers, Faith-Based Support<br>
-      ⚠️ OUT OF UTILITY FUNDING
-    </div>
-    
-    <div class="agency-card">
-      <strong>Catholic Charities Lawton</strong><br>
-      📞 580-353-1811<br>
-      📝 580-353-1811<br>
-      ⏰ Call to Schedule Appointment<br>
-      🏷️ Food Assistance, Utility Assistance, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Southern Oaks Church of Christ</strong><br>
-      📞 405-224-1821<br>
-      📝 Food & Clothing Assistance <br>
-      ⏰ Clothing M,Th 9am-12 / Food Th 5:30-7<br>
-      🏷️ Food Assistance, Clothing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Intervention & Crisis Advocacy Network</strong><br>
-      📞 405-222-1818<br>
-      📝 For victims of Domestic Violence: Counseling, Meals/Clothing, Legal Aid<br>
-      ⏰ nan<br>
-      🏷️ Food Assistance, Counseling / Mental Health, Medical / Health, Education / Testing, Legal<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Epworth United Methodist</strong><br>
-      📞 405-224-3320<br>
-      📝 Food (Wed 2-330 once per month), Utility Assistance (Chickasha Only)<br>
-      ⏰ nan<br>
-      🏷️ Food Assistance, Utility Assistance<br>
-      ⚠️ OUT OF UTILITY FUNDING
-    </div>
-    
-    <div class="agency-card">
-      <strong>DHS (Grady)</strong><br>
-      📞 405-574-7400<br>
-      📝 SNAP, SoonerCare, TANF, LIHEAP, <br>
-      ⏰ Mon-Fri 8am-5pm<br>
-      🏷️ Medical / Health, Education / Testing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>DAV Center</strong><br>
-      📞 405-448-5110<br>
-      📝 Help for Veterans<br>
-      ⏰ Wed/Fri 9-12,1-3<br>
-      🏷️ Counseling / Mental Health, Education / Testing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Washita Valley </strong><br>
-      📞 405-224-5831<br>
-      📝 Transit System<br>
-      ⏰ nan<br>
-      🏷️ nan<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Marie Detty Outreach</strong><br>
-      📞 580-250-1794<br>
-      📝 Housing, Utility<br>
-      ⏰ nan<br>
-      🏷️ Housing, Utility Assistance<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>SWYFS</strong><br>
-      📞 405-222-5437<br>
-      📝 Counseling, Court Order issues<br>
-      ⏰ M-Th <br>
-      🏷️ Counseling / Mental Health, Legal<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Chickasha Soup Kitchen</strong><br>
-      📞 405-999-5761<br>
-      📝 Daily Lunch Feeding-528  W. Minnesota Ave<br>
-      ⏰ M-F 11:30am-1pm<br>
-      🏷️ Public Meals<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Heidi Helping The Homeless</strong><br>
-      📞 405-448-5016<br>
-      📝 Food, Clothing, Store, Tents, Bedding, Laundry, Showers, Computers,<br>
-      ⏰ Mon-Sat 10am-6pm<br>
-      🏷️ Housing, Food Assistance, Clothing, Public Meals, Hygiene / Showers<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Oklahoma Alliance for Recovery Resources</strong><br>
-      📞 <a href="https://www.okarr.org" target="_blank">https://www.okarr.org</a><br>
-      📝 Housing Assistance for those in recovery from opioid use<br>
-      ⏰ Online Resource<br>
-      🏷️ Housing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>ASCOG </strong><br>
-      📞 580-736-7029<br>
-      📝 55+  Medical, nutrition, utility, etc.<br>
-      ⏰ nan<br>
-      🏷️ Food Assistance, Utility Assistance, Medical / Health<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Chickasha Adult Learning Center</strong><br>
-      📞 405-222-6562<br>
-      📝 Adult Basic Education, Scholarships, Pre-Testing, ESL, GED Testing<br>
-      ⏰ nan<br>
-      🏷️ Education / Testing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Michigan Avenue Baptist Church</strong><br>
-      📞 405-224-5379<br>
-      📝 Clothing, Food, Showers, Back to School, Document Assistance, Financial Help<br>
-      ⏰ Tuesday 9am-Noon or by appt.<br>
-      🏷️ Food Assistance, Clothing, Public Meals, Church Services, Hygiene / Showers, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Breakout Ministries Food Pantry</strong><br>
-      📞 405-819-3921<br>
-      📝 Food Assistance (1300 S. 29th St)<br>
-      ⏰ 2nd & 4th Thursdays 4pm-6pm<br>
-      🏷️ Food Assistance, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>YMCA of Greater Oklahoma</strong><br>
-      📞 405-297-7735<br>
-      📝 Health & Wellness, School Age Childcare (Scholarships Available)<br>
-      ⏰ nan<br>
-      🏷️ Counseling / Mental Health, Medical / Health<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>First Baptist Church</strong><br>
-      📞 405-224-5196<br>
-      📝 Food, Utilities (by appointment)<br>
-      ⏰ Food Last Saturday of month at 8am<br>
-      🏷️ Food Assistance, Utility Assistance<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Grady Co. Health Department </strong><br>
-      📞 405-224-2022<br>
-      📝 COVID vaccines, flu vaccines, Tdap and express STI’s,WIC, Soonercare<br>
-      ⏰ nan<br>
-      🏷️ Counseling / Mental Health, Medical / Health, Education / Testing<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Parkview Christian Church</strong><br>
-      📞 405-224-3027<br>
-      📝 Utilities<br>
-      ⏰ Mon-Thurs 9am-4pm<br>
-      🏷️ Utility Assistance<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>findhelp.org</strong><br>
-      📞 <a href="https://www.findhelp.org" target="_blank">https://www.findhelp.org</a><br>
-      📝 Online Resource<br>
-      ⏰ nan<br>
-      🏷️ nan<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Narcotics Anonymous </strong><br>
-      📞 nan<br>
-      📝 Recovery Meetings<br>
-      ⏰ Thursday's @ 7p - Michigan Avenue Baptist Church<br>
-      🏷️ Counseling / Mental Health, Faith-Based Support, Recovery<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>Alcoholics Anonymous</strong><br>
-      📞 nan<br>
-      📝 Recovery Meetins<br>
-      ⏰ Mon-Thurs @ 6p - The Salvation Army<br>
-      🏷️ Counseling / Mental Health, Education / Testing, Faith-Based Support, Recovery<br>
-      ⚠️ nan
-    </div>
-    
-    <div class="agency-card">
-      <strong>National Alliance on Mental Illness (NAMI)</strong><br>
-      📞 405-544-8235 (Emily Burns) or 434-848-5178 (Emma Short)<br>
-      📝 Family Support Group @ Michigan Avenue Baptist Church - 4th Thursday of each month<br>
-      ⏰ 6p-730p<br>
-      🏷️ Counseling / Mental Health, Faith-Based Support<br>
-      ⚠️ nan
-    </div>
-    
-</div>
+    const categoryOrder = [
+      "Food Assistance",
+      "Utility Assistance",
+      "Housing",
+      "Clothing",
+      "Public Meals",
+      "Hygiene / Showers",
+      "Counseling / Mental Health",
+      "Medical / Health",
+      "Education / Testing",
+      "Legal",
+      "Transportation",
+      "Church Services",
+      "Faith-Based Support",
+      "Recovery",
+      "Mobile Resource"
+    ];
 
-<script>
-  function filterAgencies() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.agency-card');
-    cards.forEach(card => {
-      card.style.display = card.innerText.toLowerCase().includes(input) ? 'block' : 'none';
-    });
-  }
-</script>
+    let agencies = [];
+    let activeCategory = "All";
 
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function makeClickable(text) {
+      const safe = escapeHtml(text || "");
+      return safe.replace(/(https?:\/\/[^\s,]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    }
+
+    function parseCategories(value) {
+      return String(value || "")
+        .split(",")
+        .map(x => x.trim())
+        .filter(Boolean);
+    }
+
+    function normalize(value) {
+      return String(value || "").toLowerCase();
+    }
+
+    function buildFilterButtons() {
+      const bar = document.getElementById("filterBar");
+      const categorySet = new Set();
+
+      agencies.forEach(row => {
+        parseCategories(row["Categories"]).forEach(cat => categorySet.add(cat));
+      });
+
+      const discovered = Array.from(categorySet);
+      const ordered = [
+        "All",
+        ...categoryOrder.filter(cat => discovered.includes(cat)),
+        ...discovered.filter(cat => !categoryOrder.includes(cat)).sort()
+      ];
+
+      bar.innerHTML = "";
+
+      ordered.forEach(category => {
+        const btn = document.createElement("button");
+        btn.className = "filter-btn" + (category === activeCategory ? " active" : "");
+        btn.textContent = category;
+        btn.type = "button";
+        btn.addEventListener("click", () => {
+          activeCategory = category;
+          [...document.querySelectorAll(".filter-btn")].forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderAgencies();
+        });
+        bar.appendChild(btn);
+      });
+    }
+
+    function getFilteredAgencies() {
+      const search = normalize(document.getElementById("searchInput").value);
+
+      return agencies.filter(row => {
+        const categories = parseCategories(row["Categories"]);
+        const matchesCategory = activeCategory === "All" || categories.includes(activeCategory);
+
+        const haystack = [
+          row["Name of Agency"],
+          row["Contact Info"],
+          row["Services"],
+          row["Hours"],
+          row["Categories"],
+          row["Availability"]
+        ].map(normalize).join(" ");
+
+        const matchesSearch = haystack.includes(search);
+        return matchesCategory && matchesSearch;
+      });
+    }
+
+    function renderAgencies() {
+      const list = document.getElementById("agencyList");
+      const empty = document.getElementById("emptyState");
+      const status = document.getElementById("statusRow");
+      const filtered = getFilteredAgencies();
+
+      list.innerHTML = "";
+
+      if (!filtered.length) {
+        empty.style.display = "block";
+        status.textContent = "0 resources shown";
+        return;
+      }
+
+      empty.style.display = "none";
+      status.textContent = `${filtered.length} resource${filtered.length === 1 ? "" : "s"} shown`;
+
+      filtered.forEach(row => {
+        const categories = parseCategories(row["Categories"]);
+        const availability = String(row["Availability"] || "").trim();
+
+        const card = document.createElement("div");
+        card.className = "agency-card";
+
+        const chips = categories.length
+          ? `<div class="chips">${categories.map(cat => `<span class="chip">${escapeHtml(cat)}</span>`).join("")}</div>`
+          : "";
+
+        const warning = availability
+          ? `<div class="warning">⚠️ ${escapeHtml(availability)}</div>`
+          : "";
+
+        card.innerHTML = `
+          <div class="agency-name">${escapeHtml(row["Name of Agency"] || "Unnamed Agency")}</div>
+          <div class="line">📞 ${makeClickable(row["Contact Info"] || "N/A")}</div>
+          <div class="line">📝 ${escapeHtml(row["Services"] || "N/A")}</div>
+          <div class="line">⏰ ${escapeHtml(row["Hours"] || "N/A")}</div>
+          ${chips}
+          ${warning}
+        `;
+
+        list.appendChild(card);
+      });
+    }
+
+    async function fetchAgencies() {
+      const status = document.getElementById("statusRow");
+      try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        agencies = await res.json();
+        buildFilterButtons();
+        renderAgencies();
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Sorry, the resource list could not be loaded right now.";
+        document.getElementById("agencyList").innerHTML = "";
+        document.getElementById("emptyState").style.display = "none";
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderAgencies);
+    window.addEventListener("DOMContentLoaded", fetchAgencies);
+  </script>
 </body>
 </html>
